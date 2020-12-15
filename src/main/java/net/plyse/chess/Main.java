@@ -14,4 +14,8 @@ public class Main {
         return 2;
     }
 
+    public void printRaphael() {
+        System.out.println("Raphael");
+    }
+
 }
