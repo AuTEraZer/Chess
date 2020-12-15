@@ -13,6 +13,6 @@ public class MainTest {
     @org.junit.Test
     public void returnNumberOne() {
         Main main = new Main();
-        assertEquals(1, main.returnNumberOne());
+        assertEquals(2, main.returnNumberOne());
     }
 }
