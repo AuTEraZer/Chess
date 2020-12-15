@@ -10,4 +10,8 @@ public class Main {
         System.out.println("Hello World!");
     }
 
+    public int returnNumberOne() {
+        return 2;
+    }
+
 }
