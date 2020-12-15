@@ -11,7 +11,7 @@ public class Main {
     }
 
     public int returnNumberOne() {
-        return 3;
+        return 2;
     }
 
 }
