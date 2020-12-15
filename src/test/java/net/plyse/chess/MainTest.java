@@ -1,16 +1,18 @@
 package net.plyse.chess;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Raphael Dichler on 15.12.20
  * @project Chess
  */
-class MainTest {
+public class MainTest {
 
-    @org.junit.jupiter.api.Test
-    void returnNumberOne() {
+
+    @org.junit.Test
+    public void returnNumberOne() {
         Main main = new Main();
-        assertEquals(1,main.returnNumberOne(), "Should be 1");
+        assertEquals(1, main.returnNumberOne());
     }
 }
