@@ -27,8 +27,22 @@ public class Turn {
         }
     }
 
+
+    //todo change name
+    private void swapPosition(Position startPosition) {
+
+    }
+
+    private void swapXCoordinate(Position startPosition) {
+        int tempXStartPosition = startPosition.getXCoordinate();
+        startPosition.setXCoordinate(this.destinationPosition.getXCoordinate());
+
+
+    }
+
     private boolean isValidMove(Movement chessPiece) {
-        return chessPiece.isValidTurn(this);
+        return true;
+        //todo change to that: return chessPiece.isValidTurn(this);
     }
 
     @Override
