@@ -23,6 +23,10 @@ public abstract class ChessPiece implements Movement {
         addMovementSet(chessBoard);
     }
 
+    public Position getPosition() {
+        return this.position;
+    }
+
     protected abstract void addMovementSet(ChessBoard chessBoard);
 
     @Override
@@ -44,4 +48,5 @@ public abstract class ChessPiece implements Movement {
         }
         return false;
     }
+
 }

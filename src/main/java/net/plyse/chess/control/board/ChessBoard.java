@@ -1,9 +1,6 @@
 package net.plyse.chess.control.board;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static net.plyse.chess.utility.Utility.CHESS_GRID_LENGTH;
 
@@ -20,7 +17,7 @@ public class ChessBoard{
         this.chessBoard = createEmptyChessBoard();
     }
 
-    public ChessBoard(Set<Position> occupiedPositions) {
+    public ChessBoard(List<Position> occupiedPositions) {
         this.chessBoard = createChessBoardWithOccupiedTiles(occupiedPositions);
     }
 
@@ -36,14 +33,15 @@ public class ChessBoard{
         return map;
     }
 
-    private Map<Position, Tile> createChessBoardWithOccupiedTiles(Set<Position> occupiedPositions) {
+    private Map<Position, Tile> createChessBoardWithOccupiedTiles(List<Position> occupiedPositions) {
         Map<Position, Tile> map = createEmptyChessBoard();
         for (int y = 0; y < CHESS_GRID_LENGTH; y++) {
             for (int x = 0; x < CHESS_GRID_LENGTH; x++) {
                 Position position = new Position(x, y);
                 Tile tile;
-                if (position.equals(occupiedPositions)) {
-                    tile = new OccupiedTile(position);
+                int index = occupiedPositions.indexOf(position);
+                if (index != -1) {
+                    tile = new OccupiedTile(occupiedPositions.get(index));
                 } else {
                     tile = new EmptyTile(position);
                 }

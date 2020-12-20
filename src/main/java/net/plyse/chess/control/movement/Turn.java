@@ -23,21 +23,26 @@ public class Turn {
 
     public void makeTurn(ChessPiece chessPiece) {
         if (isValidMove(chessPiece)) {
-            //swaps position values
+            swapPosition(chessPiece.getPosition());
         }
     }
 
 
-    //todo change name
     private void swapPosition(Position startPosition) {
-
+        swapXCoordinate(startPosition);
+        swapYCoordinate(startPosition);
     }
 
     private void swapXCoordinate(Position startPosition) {
-        int tempXStartPosition = startPosition.getXCoordinate();
+        int xStartPosition = startPosition.getXCoordinate();
         startPosition.setXCoordinate(this.destinationPosition.getXCoordinate());
+        destinationPosition.setXCoordinate(xStartPosition);
+    }
 
-
+    private void swapYCoordinate(Position startPosition) {
+        int yStartPosition = startPosition.getYCoordinate();
+        startPosition.setYCoordinate(this.destinationPosition.getYCoordinate());
+        destinationPosition.setYCoordinate(yStartPosition);
     }
 
     private boolean isValidMove(Movement chessPiece) {
