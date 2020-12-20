@@ -6,4 +6,7 @@ package net.plyse.chess.utility;
  */
 public final class Utility {
 
+    public static final int CHESS_GRID_LENGTH = 8;
+
+
 }
