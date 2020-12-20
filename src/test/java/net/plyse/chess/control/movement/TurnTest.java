@@ -2,7 +2,9 @@ package net.plyse.chess.control.movement;
 
 import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.board.Position;
+import net.plyse.chess.control.piece.ChessPiece;
 import net.plyse.chess.control.piece.King;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,9 +20,18 @@ import static org.junit.Assert.*;
  */
 public class TurnTest {
 
+
+    private ChessBoard emptyChessBoardA;
+    private ChessBoard emptyChessBoardB;
+
+    @Before
+    public void setUp() throws Exception {
+        this.emptyChessBoardA = new ChessBoard();
+        this.emptyChessBoardB = new ChessBoard();
+    }
+
     @Test
     public void makeTurn() {
-
         List<Position> positions = new ArrayList<>();
         Position startPosition = new Position(3,3);
         Position destinationPosition = new Position(4,3);
@@ -35,4 +46,24 @@ public class TurnTest {
         assertTrue(destinationPosition.getXCoordinate() == 3);
 
     }
+
+    @Test
+    public void equals() {
+        Position positionA = new Position(1,1);
+        Position positionB = new Position(1,1);
+
+        Turn turnA = new Turn(positionA, this.emptyChessBoardA);
+        Turn turnB = new Turn(positionA, this.emptyChessBoardA);
+        assertTrue(turnA.equals(turnB));
+
+        Turn turnC = new Turn(positionA, this.emptyChessBoardA);
+        Turn turnD = new Turn(positionB, this.emptyChessBoardA);
+        assertFalse(turnC.equals(turnD));
+
+        Turn turnE = new Turn(positionA, this.emptyChessBoardB);
+        Turn turnF = new Turn(positionA, this.emptyChessBoardA);
+        assertFalse(turnE.equals(turnF));
+
+    }
+
 }

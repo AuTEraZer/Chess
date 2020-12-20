@@ -59,8 +59,4 @@ public class Turn {
                 (turn.destinationPosition == this.destinationPosition));
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(destinationPosition, chessBoard);
-    }
 }
