@@ -8,6 +8,7 @@ import java.util.Objects;
  */
 public class Position {
 
+    // todo will be final
     private int xCoordinate;
     private int yCoordinate;
 
