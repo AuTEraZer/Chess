@@ -56,8 +56,7 @@ public class Turn {
         if (o == null || getClass() != o.getClass()) return false;
         Turn turn = (Turn) o;
         return (turn.chessBoard == this.chessBoard &&
-                (turn.destinationPosition.getXCoordinate() == this.destinationPosition.getXCoordinate() &&
-                        turn.destinationPosition.getYCoordinate() == this.destinationPosition.getYCoordinate()));
+                (turn.destinationPosition == this.destinationPosition));
     }
 
     @Override
