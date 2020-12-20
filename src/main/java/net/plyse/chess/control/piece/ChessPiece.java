@@ -1,5 +1,6 @@
 package net.plyse.chess.control.piece;
 
+import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.movement.Movement;
 import net.plyse.chess.control.board.Position;
 import net.plyse.chess.control.movement.Turn;
@@ -16,13 +17,13 @@ public abstract class ChessPiece implements Movement {
     protected Position position;
     protected Set<Movement> movementSet;
 
-    public ChessPiece(Position position) {
+    public ChessPiece(Position position, ChessBoard chessBoard) {
         this.position = position;
         this.movementSet = new HashSet<>();
-        addMovementSet();
+        addMovementSet(chessBoard);
     }
 
-    protected abstract void addMovementSet();
+    protected abstract void addMovementSet(ChessBoard chessBoard);
 
     @Override
     public Set<Turn> getPossibleTurns() {
