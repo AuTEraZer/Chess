@@ -6,7 +6,9 @@ package net.plyse.chess.control;
  */
 public class Tile {
 
+    // is maybe unnecessary
     private final Position position;
+
     private boolean occupied;
 
     public Tile(Position position, boolean occupied) {
@@ -18,7 +20,7 @@ public class Tile {
         return this.occupied;
     }
 
-    public void setOccupied(boolean occupied) {
+    void setOccupied(boolean occupied) {
         this.occupied = occupied;
     }
 }

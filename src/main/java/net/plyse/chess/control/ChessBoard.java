@@ -1,5 +1,7 @@
 package net.plyse.chess.control;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -8,12 +10,18 @@ import java.util.Map;
  */
 public class ChessBoard {
 
-    private Map<Position, Tile> chessBoard;
+    private final Map<Position, Tile> chessBoard;
 
-
+    public ChessBoard() {
+        this.chessBoard = new HashMap<>();
+    }
 
     Tile getTile(Position position) {
         return null;
+    }
+
+    public Map<Position, Tile> getChessBoard() {
+        return Collections.unmodifiableMap(this.chessBoard);
     }
 
 }

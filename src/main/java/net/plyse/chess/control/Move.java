@@ -6,7 +6,7 @@ package net.plyse.chess.control;
  */
 public abstract class Move {
 
-    protected ChessBoard chessBoard;
+    protected final ChessBoard chessBoard;
     protected Position position;
 
     public Move(ChessBoard chessBoard, Position position) {

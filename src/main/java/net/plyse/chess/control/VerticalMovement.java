@@ -1,6 +1,5 @@
 package net.plyse.chess.control;
 
-import net.plyse.chess.control.*;
 
 import java.util.Set;
 
@@ -17,6 +16,11 @@ public class VerticalMovement extends Move implements Movement {
     @Override
     public Set<Turn> getPossibleTurns() {
         return null;
+    }
+
+    @Override
+    public boolean isValidTurn(Turn turn) {
+        return true;
     }
 
 }

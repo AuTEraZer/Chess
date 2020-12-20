@@ -1,7 +1,5 @@
 package net.plyse.chess.control;
 
-import net.plyse.chess.control.Turn;
-
 import java.util.Set;
 
 /**
@@ -11,5 +9,6 @@ import java.util.Set;
 public interface Movement {
 
     Set<Turn> getPossibleTurns();
+    boolean isValidTurn(Turn turn);
 
 }

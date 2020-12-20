@@ -1,4 +1,4 @@
-package net.plyse.chess.piece;
+package net.plyse.chess.control;
 
 import net.plyse.chess.control.Movement;
 import net.plyse.chess.control.Position;
@@ -18,12 +18,13 @@ public abstract class ChessPiece implements Movement {
 
     public ChessPiece(Position position) {
         this.position = position;
+        this.movementSet = new HashSet<>();
         addMovementSet();
     }
 
     protected abstract void addMovementSet();
 
-    public void setPosition(Position position) {
+    void setPosition(Position position) {
         this.position = position;
     }
 
@@ -39,5 +40,15 @@ public abstract class ChessPiece implements Movement {
             turnSet.addAll(turnCollection);
         }
         return turnSet;
+    }
+
+    @Override
+    public boolean isValidTurn(Turn turn) {
+        for (Movement movement : this.movementSet) {
+            if (movement.isValidTurn(turn)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
