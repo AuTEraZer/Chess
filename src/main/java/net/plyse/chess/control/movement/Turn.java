@@ -1,4 +1,8 @@
-package net.plyse.chess.control;
+package net.plyse.chess.control.movement;
+
+import net.plyse.chess.control.board.ChessBoard;
+import net.plyse.chess.control.board.Position;
+import net.plyse.chess.control.piece.ChessPiece;
 
 import java.util.Objects;
 
@@ -8,7 +12,6 @@ import java.util.Objects;
  */
 public class Turn {
 
-    // should be the same ref as the board position
     private final Position destinationPosition;
     private final ChessBoard chessBoard;
 
@@ -18,21 +21,9 @@ public class Turn {
     }
 
 
-    // is used by the player
     public void makeTurn(ChessPiece chessPiece) {
         if (isValidMove(chessPiece)) {
-
-            // is maybe unnecessary if the ChessPiece class has the same position ref as the chessBoard
-            Position oldPositionOfChessPiece = chessPiece.getPosition();
-
-            //is maybe unnecessary if the member var destinationPosition is the same ref as the chess board
-            Tile startTile = this.chessBoard.getTile(oldPositionOfChessPiece);
-            startTile.setOccupied(false);
-
-            chessPiece.setPosition(destinationPosition);
-
-            Tile destinationTile = chessBoard.getTile(this.destinationPosition);
-            destinationTile.setOccupied(true);
+            //swaps position values
         }
     }
 

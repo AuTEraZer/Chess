@@ -1,8 +1,8 @@
-package net.plyse.chess.control;
+package net.plyse.chess.control.piece;
 
-import net.plyse.chess.control.Movement;
-import net.plyse.chess.control.Position;
-import net.plyse.chess.control.Turn;
+import net.plyse.chess.control.movement.Movement;
+import net.plyse.chess.control.board.Position;
+import net.plyse.chess.control.movement.Turn;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,14 +23,6 @@ public abstract class ChessPiece implements Movement {
     }
 
     protected abstract void addMovementSet();
-
-    void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public Position getPosition() {
-        return this.position;
-    }
 
     @Override
     public Set<Turn> getPossibleTurns() {

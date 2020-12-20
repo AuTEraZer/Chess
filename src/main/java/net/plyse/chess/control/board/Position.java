@@ -1,4 +1,4 @@
-package net.plyse.chess.control;
+package net.plyse.chess.control.board;
 
 import java.util.Objects;
 
@@ -16,22 +16,6 @@ public class Position {
         this.yCoordinate = yCoordinate;
     }
 
-    public int getXCoordinate() {
-        return xCoordinate;
-    }
-
-    public void setXCoordinate(int xCoordinate) {
-        this.xCoordinate = xCoordinate;
-    }
-
-    public int getYCoordinate() {
-        return yCoordinate;
-    }
-
-    public void setYCoordinate(int yCoordinate) {
-        this.yCoordinate = yCoordinate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,4 +28,14 @@ public class Position {
     public int hashCode() {
         return Objects.hash(xCoordinate, yCoordinate);
     }
+
+    public int getXCoordinate() {
+        return this.xCoordinate;
+    }
+
+    public int getYCoordinate() {
+        return this.yCoordinate;
+    }
+
 }
+

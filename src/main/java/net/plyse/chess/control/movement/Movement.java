@@ -1,4 +1,4 @@
-package net.plyse.chess.control;
+package net.plyse.chess.control.movement;
 
 import java.util.Set;
 

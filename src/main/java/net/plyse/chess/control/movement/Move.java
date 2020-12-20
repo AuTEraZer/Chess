@@ -1,4 +1,7 @@
-package net.plyse.chess.control;
+package net.plyse.chess.control.movement;
+
+import net.plyse.chess.control.board.ChessBoard;
+import net.plyse.chess.control.board.Position;
 
 /**
  * @author Raphael Dichler on 17.12.20
