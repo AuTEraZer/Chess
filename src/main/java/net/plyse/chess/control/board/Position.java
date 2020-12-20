@@ -15,6 +15,7 @@ public class Position {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
     }
+
     public int getXCoordinate() {
         return this.xCoordinate;
     }
@@ -37,11 +38,6 @@ public class Position {
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
         return (position.xCoordinate == this.xCoordinate && position.yCoordinate == this.yCoordinate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(xCoordinate, yCoordinate);
     }
 
 }

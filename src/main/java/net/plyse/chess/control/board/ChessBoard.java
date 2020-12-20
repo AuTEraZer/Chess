@@ -21,6 +21,35 @@ public class ChessBoard{
         this.chessBoard = createChessBoardWithOccupiedTiles(occupiedPositions);
     }
 
+    public ChessBoard(List<Position> occupiedPositions, List<Position> emptyPositions) {
+        this.chessBoard = createEmptyAndOccupiedChessBoard(occupiedPositions, emptyPositions);
+    }
+
+    private Map<Position, Tile> createEmptyAndOccupiedChessBoard(List<Position> occupiedPositions,
+                                                                 List<Position> emptyPositions) {
+        Map<Position, Tile> map = createEmptyChessBoard();
+        for (int y = 0; y < CHESS_GRID_LENGTH; y++) {
+            for (int x = 0; x < CHESS_GRID_LENGTH; x++) {
+                Position position = new Position(x, y);
+                Tile tile;
+                int occupiedIndex = occupiedPositions.indexOf(position);
+                int emptyIndex = emptyPositions.indexOf(position);
+                if (occupiedIndex != -1) {
+                    tile = new OccupiedTile(occupiedPositions.get(occupiedIndex));
+                } else {
+                    if (emptyIndex != -1) {
+                        tile = new EmptyTile(emptyPositions.get(emptyIndex));
+                    } else  {
+                        tile = new EmptyTile(position);
+                    }
+                }
+                map.put(position, tile);
+            }
+        }
+        return map;
+    }
+
+
     private Map<Position, Tile> createEmptyChessBoard(){
         Map<Position, Tile> map = new HashMap<>();
         for (int y = 0; y < CHESS_GRID_LENGTH; y++) {

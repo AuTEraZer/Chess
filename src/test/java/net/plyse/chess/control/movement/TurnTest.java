@@ -20,7 +20,6 @@ import static org.junit.Assert.*;
  */
 public class TurnTest {
 
-
     private ChessBoard emptyChessBoardA;
     private ChessBoard emptyChessBoardB;
 
