@@ -49,7 +49,7 @@ public class TurnTest {
     @Test
     public void equals() {
         Position positionA = new Position(1,1);
-        Position positionB = new Position(1,1);
+        Position positionB = new Position(2,2);
 
         Turn turnA = new Turn(positionA, this.emptyChessBoardA);
         Turn turnB = new Turn(positionA, this.emptyChessBoardA);

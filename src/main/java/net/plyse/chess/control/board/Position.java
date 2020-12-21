@@ -40,5 +40,9 @@ public class Position {
         return (position.xCoordinate == this.xCoordinate && position.yCoordinate == this.yCoordinate);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(xCoordinate, yCoordinate);
+    }
 }
 

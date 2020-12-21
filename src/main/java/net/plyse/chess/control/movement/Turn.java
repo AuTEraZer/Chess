@@ -4,6 +4,8 @@ import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.board.Position;
 import net.plyse.chess.control.piece.ChessPiece;
 
+import java.util.Objects;
+
 /**
  * @author Raphael Dichler on 17.12.20
  * @project Chess
@@ -22,6 +24,10 @@ public class Turn {
         if (isValidMove(chessPiece)) {
             swapPosition(chessPiece.getPosition());
         }
+    }
+
+    public Position getDestinationPosition() {
+        return this.destinationPosition;
     }
 
     private void swapPosition(Position startPosition) {
@@ -52,7 +58,12 @@ public class Turn {
         if (o == null || getClass() != o.getClass()) return false;
         Turn turn = (Turn) o;
         return (turn.chessBoard == this.chessBoard &&
-                (turn.destinationPosition == this.destinationPosition));
+                (turn.destinationPosition.getXCoordinate() == this.destinationPosition.getXCoordinate() &&
+                        turn.destinationPosition.getYCoordinate() == this.destinationPosition.getYCoordinate()));
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(destinationPosition, chessBoard);
+    }
 }

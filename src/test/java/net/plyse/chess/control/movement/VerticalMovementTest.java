@@ -2,8 +2,6 @@ package net.plyse.chess.control.movement;
 
 import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.board.Position;
-import net.plyse.chess.utility.Utility;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class VerticalMovementTest {
         for (int iAbove = startY + 1; iAbove < obstacleY; iAbove++) {
             emptyPositions.add(new Position(startY, iAbove));
         }
-        for (int iBeneath = startY - 1; iBeneath > 0; iBeneath--) {
+        for (int iBeneath = startY - 1; iBeneath >= 0; iBeneath--) {
             emptyPositions.add(new Position(startY, iBeneath));
         }
 
@@ -52,8 +50,11 @@ public class VerticalMovementTest {
             expectedSet.add(turn);
         }
 
-        return (verticalMovement.getPossibleTurns().containsAll(expectedSet) &&
-                expectedSet.containsAll(verticalMovement.getPossibleTurns()));
+        Set<Turn> realSet = verticalMovement.getPossibleTurns();
+
+
+        return (realSet.containsAll(expectedSet) &&
+                expectedSet.containsAll(realSet));
     }
 
     public boolean noObstacleTest() {
@@ -66,7 +67,7 @@ public class VerticalMovementTest {
         for (int iAbove = startX + 1; iAbove < CHESS_GRID_LENGTH; iAbove++) {
             emptyPositions.add(new Position(startX, iAbove));
         }
-        for (int iBeneath = startX - 1; iBeneath > 0; iBeneath--) {
+        for (int iBeneath = startX - 1; iBeneath >= 0; iBeneath--) {
             emptyPositions.add(new Position(startX, iBeneath));
         }
 
@@ -79,17 +80,38 @@ public class VerticalMovementTest {
             expectedSet.add(turn);
         }
 
-        return (verticalMovement.getPossibleTurns().containsAll(expectedSet) &&
-                expectedSet.containsAll(verticalMovement.getPossibleTurns()));
+        Set<Turn> realSet = verticalMovement.getPossibleTurns();
+
+        return (realSet.containsAll(expectedSet) &&
+                expectedSet.containsAll(realSet));
     }
 
     @Test
     public void isValidTurn() {
         assertTrue(validTurn());
-        assertFalse(invalidTurn());
+        assertFalse(invalidTurnThroughWrongColumn());
+        assertFalse(invalidTurnThroughObstacle());
     }
 
-    private boolean invalidTurn() {
+    private boolean invalidTurnThroughObstacle() {
+        Position movementPosition = new Position(3,3);
+
+        Position turnPosition = new Position(3, 6);
+        List<Position> emptyPositions = new ArrayList<>();
+        emptyPositions.add(turnPosition);
+
+        Position obstaclePosition = new Position(3, 4);
+        List<Position> obstaclePositions = new ArrayList<>();
+        obstaclePositions.add(obstaclePosition);
+
+        ChessBoard chessBoard = new ChessBoard(obstaclePositions, emptyPositions);
+        Turn turn = new Turn(turnPosition, chessBoard);
+        VerticalMovement verticalMovement = new VerticalMovement(chessBoard,movementPosition);
+        boolean is = verticalMovement.isValidTurn(turn);
+        return is;
+    }
+
+    private boolean invalidTurnThroughWrongColumn() {
         ChessBoard emptyChessBoard = new ChessBoard();
         Position movementPosition = new Position(3,3);
         Position turnPosition = new Position(5, 5);

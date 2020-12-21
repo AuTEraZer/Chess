@@ -14,4 +14,7 @@ public abstract class Tile {
 
     public abstract boolean isOccupied();
 
+    public Position getPosition() {
+        return position;
+    }
 }

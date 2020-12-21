@@ -27,7 +27,7 @@ public class ChessBoard{
 
     private Map<Position, Tile> createEmptyAndOccupiedChessBoard(List<Position> occupiedPositions,
                                                                  List<Position> emptyPositions) {
-        Map<Position, Tile> map = createEmptyChessBoard();
+        Map<Position, Tile> map = new HashMap<>();
         for (int y = 0; y < CHESS_GRID_LENGTH; y++) {
             for (int x = 0; x < CHESS_GRID_LENGTH; x++) {
                 Position position = new Position(x, y);
@@ -63,7 +63,7 @@ public class ChessBoard{
     }
 
     private Map<Position, Tile> createChessBoardWithOccupiedTiles(List<Position> occupiedPositions) {
-        Map<Position, Tile> map = createEmptyChessBoard();
+        Map<Position, Tile> map = new HashMap<>();
         for (int y = 0; y < CHESS_GRID_LENGTH; y++) {
             for (int x = 0; x < CHESS_GRID_LENGTH; x++) {
                 Position position = new Position(x, y);
@@ -80,7 +80,12 @@ public class ChessBoard{
         return map;
     }
 
-    Tile getTile(Position position) {
+    public Tile getTile(Position position) {
+        return this.chessBoard.get(position);
+    }
+
+    public Tile getTile(int xCoordinate, int yCoordinate) {
+        Position position = new Position(xCoordinate,yCoordinate);
         return this.chessBoard.get(position);
     }
 
