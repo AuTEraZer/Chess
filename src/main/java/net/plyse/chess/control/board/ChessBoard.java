@@ -2,6 +2,7 @@ package net.plyse.chess.control.board;
 
 import net.plyse.chess.control.movement.Turn;
 import net.plyse.chess.control.piece.ChessPiece;
+import net.plyse.chess.exception.InvalidTurnException;
 
 import java.util.*;
 
@@ -92,7 +93,7 @@ public class ChessBoard {
             chessPiecePosition.changePosition(turn, chessPiece);
             changePosition(chessPiece, turn, chessPieceBufferPosition);
         }
-        // todo throw error/exception
+        throw new InvalidTurnException();
     }
 
     private void changePosition(ChessPiece chessPiece, Turn turn, Position chessPieceBufferPosition) {

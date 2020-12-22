@@ -2,6 +2,7 @@ package net.plyse.chess.control.board;
 
 import net.plyse.chess.control.movement.Turn;
 import net.plyse.chess.control.piece.ChessPiece;
+import net.plyse.chess.exception.InvalidTurnException;
 
 import java.util.Objects;
 
@@ -29,7 +30,7 @@ public class Position {
             this.xCoordinate = turn.getDestinationPosition().xCoordinate;
             this.yCoordinate = turn.getDestinationPosition().yCoordinate;
         }
-        // todo throws an exception
+        throw new InvalidTurnException();
     }
 
     public void changePosition(Turn turn, ChessPiece chessPiece, Position position) {
@@ -37,7 +38,7 @@ public class Position {
             this.xCoordinate = position.xCoordinate;
             this.yCoordinate = position.yCoordinate;
         }
-        // todo throw an error/exception
+        throw new InvalidTurnException();
     }
 
     public int getXCoordinate() {

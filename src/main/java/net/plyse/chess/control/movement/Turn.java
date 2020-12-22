@@ -3,6 +3,7 @@ package net.plyse.chess.control.movement;
 import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.board.Position;
 import net.plyse.chess.control.piece.ChessPiece;
+import net.plyse.chess.exception.InvalidTurnException;
 
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class Turn {
         if (isValidMove(chessPiece)) {
             chessBoard.move(chessPiece, this);
         }
-        //todo throw an error/exception
+        throw new InvalidTurnException();
     }
 
     public Position getDestinationPosition() {
@@ -32,7 +33,6 @@ public class Turn {
     }
 
     public boolean isValidMove(Movement chessPiece) {
-        //return true;
         return chessPiece.isValidTurn(this);
     }
 
