@@ -22,6 +22,6 @@ public class DiagonalMovement extends Move implements Movement{
 
     @Override
     public boolean isValidTurn(Turn turn) {
-        return false;
+        return true;
     }
 }

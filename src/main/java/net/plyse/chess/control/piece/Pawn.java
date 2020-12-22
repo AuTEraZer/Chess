@@ -11,7 +11,7 @@ import net.plyse.chess.control.movement.PromotionMovement;
  * @author Raphael Dichler on 20.12.20
  * @project Chess
  */
-public class Pawn extends ChessPiece{
+public class Pawn extends ChessPiece {
 
     public Pawn(Position position, ChessBoard chessBoard) {
         super(position, chessBoard);

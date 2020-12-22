@@ -107,8 +107,7 @@ public class VerticalMovementTest {
         ChessBoard chessBoard = new ChessBoard(obstaclePositions, emptyPositions);
         Turn turn = new Turn(turnPosition, chessBoard);
         VerticalMovement verticalMovement = new VerticalMovement(chessBoard,movementPosition);
-        boolean is = verticalMovement.isValidTurn(turn);
-        return is;
+        return verticalMovement.isValidTurn(turn);
     }
 
     private boolean invalidTurnThroughWrongColumn() {

@@ -22,34 +22,18 @@ public class Turn {
 
     public void makeTurn(ChessPiece chessPiece) {
         if (isValidMove(chessPiece)) {
-            swapPosition(chessPiece.getPosition());
+            chessBoard.move(chessPiece, this);
         }
+        //todo throw an error/exception
     }
 
     public Position getDestinationPosition() {
         return this.destinationPosition;
     }
 
-    private void swapPosition(Position startPosition) {
-        swapXCoordinate(startPosition);
-        swapYCoordinate(startPosition);
-    }
-
-    private void swapXCoordinate(Position startPosition) {
-        int xStartPosition = startPosition.getXCoordinate();
-        startPosition.setXCoordinate(this.destinationPosition.getXCoordinate());
-        destinationPosition.setXCoordinate(xStartPosition);
-    }
-
-    private void swapYCoordinate(Position startPosition) {
-        int yStartPosition = startPosition.getYCoordinate();
-        startPosition.setYCoordinate(this.destinationPosition.getYCoordinate());
-        destinationPosition.setYCoordinate(yStartPosition);
-    }
-
-    private boolean isValidMove(Movement chessPiece) {
-        return true;
-        //todo change to that: return chessPiece.isValidTurn(this);
+    public boolean isValidMove(Movement chessPiece) {
+        //return true;
+        return chessPiece.isValidTurn(this);
     }
 
     @Override
@@ -62,6 +46,7 @@ public class Turn {
                         turn.destinationPosition.getYCoordinate() == this.destinationPosition.getYCoordinate()));
     }
 
+    // todo check if thats ok
     @Override
     public int hashCode() {
         return Objects.hash(destinationPosition, chessBoard);

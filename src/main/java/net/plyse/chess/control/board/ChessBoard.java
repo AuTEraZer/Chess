@@ -1,5 +1,8 @@
 package net.plyse.chess.control.board;
 
+import net.plyse.chess.control.movement.Turn;
+import net.plyse.chess.control.piece.ChessPiece;
+
 import java.util.*;
 
 import static net.plyse.chess.utility.Utility.CHESS_GRID_LENGTH;
@@ -9,7 +12,7 @@ import static net.plyse.chess.utility.Utility.CHESS_GRID_LENGTH;
  * @author Raphael Dichler on 17.12.20
  * @project Chess
  */
-public class ChessBoard{
+public class ChessBoard {
 
     private final Map<Position, Tile> chessBoard;
 
@@ -35,9 +38,11 @@ public class ChessBoard{
                 int occupiedIndex = occupiedPositions.indexOf(position);
                 int emptyIndex = emptyPositions.indexOf(position);
                 if (occupiedIndex != -1) {
+                    position = occupiedPositions.get(occupiedIndex);
                     tile = new OccupiedTile(occupiedPositions.get(occupiedIndex));
                 } else {
                     if (emptyIndex != -1) {
+                        position = emptyPositions.get(emptyIndex);
                         tile = new EmptyTile(emptyPositions.get(emptyIndex));
                     } else  {
                         tile = new EmptyTile(position);
@@ -48,7 +53,6 @@ public class ChessBoard{
         }
         return map;
     }
-
 
     private Map<Position, Tile> createEmptyChessBoard(){
         Map<Position, Tile> map = new HashMap<>();
@@ -70,6 +74,7 @@ public class ChessBoard{
                 Tile tile;
                 int index = occupiedPositions.indexOf(position);
                 if (index != -1) {
+                    position = occupiedPositions.get(index);
                     tile = new OccupiedTile(occupiedPositions.get(index));
                 } else {
                     tile = new EmptyTile(position);
@@ -80,13 +85,30 @@ public class ChessBoard{
         return map;
     }
 
+    public void move(ChessPiece chessPiece, Turn turn) {
+        if (turn.isValidMove(chessPiece)) {
+            Position chessPiecePosition = chessPiece.getPosition();
+            Position chessPieceBufferPosition = new Position(chessPiecePosition);
+            chessPiecePosition.changePosition(turn, chessPiece);
+            changePosition(chessPiece, turn, chessPieceBufferPosition);
+        }
+        // todo throw error/exception
+    }
+
+    private void changePosition(ChessPiece chessPiece, Turn turn, Position chessPieceBufferPosition) {
+        Position turnPosition = turn.getDestinationPosition();
+        turnPosition.changePosition(turn, chessPiece, chessPieceBufferPosition);
+    }
+
+    @Deprecated
     public Tile getTile(Position position) {
         return this.chessBoard.get(position);
     }
 
+    @Deprecated
     public Tile getTile(int xCoordinate, int yCoordinate) {
         Position position = new Position(xCoordinate,yCoordinate);
-        return this.chessBoard.get(position);
+        return getTile(position);
     }
 
     public Map<Position, Tile> getChessBoard() {

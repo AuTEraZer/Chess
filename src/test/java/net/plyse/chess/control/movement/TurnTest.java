@@ -32,18 +32,17 @@ public class TurnTest {
     @Test
     public void makeTurn() {
         List<Position> positions = new ArrayList<>();
+        List<Position> positionsFree = new ArrayList<>();
         Position startPosition = new Position(3,3);
         Position destinationPosition = new Position(4,3);
         positions.add(startPosition);
-        positions.add(destinationPosition);
-        ChessBoard chessBoard = new ChessBoard(positions);
-
+        positionsFree.add(destinationPosition);
+        ChessBoard chessBoard = new ChessBoard(positions, positionsFree);
         King king = new King(startPosition, chessBoard);
         Turn turn = new Turn(destinationPosition, chessBoard);
         turn.makeTurn(king);
         assertTrue(startPosition.getXCoordinate() == 4);
         assertTrue(destinationPosition.getXCoordinate() == 3);
-
     }
 
     @Test

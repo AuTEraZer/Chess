@@ -9,6 +9,7 @@ import java.util.Set;
 public interface Movement {
 
     Set<Turn> getPossibleTurns();
+
     boolean isValidTurn(Turn turn);
 
 }

@@ -1,5 +1,8 @@
 package net.plyse.chess.control.board;
 
+import net.plyse.chess.control.movement.Turn;
+import net.plyse.chess.control.piece.ChessPiece;
+
 import java.util.Objects;
 
 /**
@@ -16,20 +19,33 @@ public class Position {
         this.yCoordinate = yCoordinate;
     }
 
+    public Position(Position position) {
+        this.xCoordinate = position.xCoordinate;
+        this.yCoordinate = position.yCoordinate;
+    }
+
+    public void changePosition(Turn turn, ChessPiece chessPiece) {
+        if (turn.isValidMove(chessPiece)) {
+            this.xCoordinate = turn.getDestinationPosition().xCoordinate;
+            this.yCoordinate = turn.getDestinationPosition().yCoordinate;
+        }
+        // todo throws an exception
+    }
+
+    public void changePosition(Turn turn, ChessPiece chessPiece, Position position) {
+        if (turn.isValidMove(chessPiece)) {
+            this.xCoordinate = position.xCoordinate;
+            this.yCoordinate = position.yCoordinate;
+        }
+        // todo throw an error/exception
+    }
+
     public int getXCoordinate() {
         return this.xCoordinate;
     }
 
     public int getYCoordinate() {
         return this.yCoordinate;
-    }
-
-    public void setXCoordinate(int xCoordinate) {
-        this.xCoordinate = xCoordinate;
-    }
-
-    public void setYCoordinate(int yCoordinate) {
-        this.yCoordinate = yCoordinate;
     }
 
     @Override
