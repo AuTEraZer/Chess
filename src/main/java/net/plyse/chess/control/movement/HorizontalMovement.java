@@ -2,6 +2,7 @@ package net.plyse.chess.control.movement;
 
 import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.board.Position;
+import net.plyse.chess.control.player.Player;
 
 import java.util.Set;
 
@@ -11,8 +12,8 @@ import java.util.Set;
  */
 public class HorizontalMovement extends Move implements Movement{
 
-    public HorizontalMovement(ChessBoard chessBoard, Position position) {
-        super(chessBoard, position);
+    public HorizontalMovement(ChessBoard chessBoard, Position position, Player player) {
+        super(chessBoard, position, player);
     }
 
     @Override

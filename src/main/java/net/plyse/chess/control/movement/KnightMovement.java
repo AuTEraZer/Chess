@@ -2,6 +2,7 @@ package net.plyse.chess.control.movement;
 
 import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.board.Position;
+import net.plyse.chess.control.player.Player;
 
 import java.util.Set;
 
@@ -11,8 +12,8 @@ import java.util.Set;
  */
 public class KnightMovement extends Move implements Movement{
 
-    public KnightMovement(ChessBoard chessBoard, Position position) {
-        super(chessBoard, position);
+    public KnightMovement(ChessBoard chessBoard, Position position, Player player) {
+        super(chessBoard, position, player);
     }
 
     @Override

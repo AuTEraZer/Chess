@@ -4,6 +4,7 @@ package net.plyse.chess.control.movement;
 import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.board.Position;
 import net.plyse.chess.control.board.Tile;
+import net.plyse.chess.control.player.Player;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +17,8 @@ import static net.plyse.chess.utility.Utility.CHESS_GRID_LENGTH;
  */
 public class VerticalMovement extends Move implements Movement {
 
-    public VerticalMovement(ChessBoard chessBoard, Position position) {
-        super(chessBoard, position);
+    public VerticalMovement(ChessBoard chessBoard, Position position, Player player) {
+        super(chessBoard, position, player);
     }
 
     @Override
@@ -27,22 +28,28 @@ public class VerticalMovement extends Move implements Movement {
                 currentXPosition = this.position.getXCoordinate();
 
         for (int yCoordinate = 0; yCoordinate < currentYPosition; yCoordinate++) {
-            Tile tile = this.chessBoard.getTile(currentXPosition, yCoordinate);
-            if (tile.isOccupied()) {
-                // todo add is opponent
+            Position possibleTurnDestination = new Position(currentXPosition, yCoordinate);
+            if(this.chessBoard.isPositionOccupied(possibleTurnDestination)
+                    && !this.chessBoard.isPositionOccupiedByOpponent(this.position, this.player)) {
                 break;
             } else {
-                possibleTurns.add(new Turn(tile.getPosition(), this.chessBoard));
+                possibleTurns.add(new Turn(possibleTurnDestination, this.chessBoard));
+                if (this.chessBoard.isPositionOccupiedByOpponent(this.position, this.player)) {
+                    break;
+                }
             }
         }
 
         for (int yCoordinate = currentYPosition + 1; yCoordinate < CHESS_GRID_LENGTH; yCoordinate++) {
-            Tile tile = this.chessBoard.getTile(currentXPosition, yCoordinate);
-            if (tile.isOccupied()) {
-                // todo add is opponent
+            Position possibleTurnDestination = new Position(currentXPosition, yCoordinate);
+            if(this.chessBoard.isPositionOccupied(possibleTurnDestination)
+                    && !this.chessBoard.isPositionOccupiedByOpponent(this.position, this.player)) {
                 break;
             } else {
-                possibleTurns.add(new Turn(tile.getPosition(), this.chessBoard));
+                possibleTurns.add(new Turn(possibleTurnDestination, this.chessBoard));
+                if (this.chessBoard.isPositionOccupiedByOpponent(this.position, this.player)) {
+                    break;
+                }
             }
         }
 
@@ -61,6 +68,7 @@ public class VerticalMovement extends Move implements Movement {
 
         if (yOfValidatingTurn > yOfCurrentMovement) {
             for (int i = yOfValidatingTurn; i > yOfCurrentMovement; i--) {
+                Position possibleTurnDestination = new Position(xPosition, i);
                 Tile tile = this.chessBoard.getTile(xPosition, i);
                 if (tile.isOccupied()) {
                     return false;

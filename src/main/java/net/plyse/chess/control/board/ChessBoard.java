@@ -1,7 +1,9 @@
 package net.plyse.chess.control.board;
 
+import net.plyse.chess.control.game.Game;
 import net.plyse.chess.control.movement.Turn;
 import net.plyse.chess.control.piece.ChessPiece;
+import net.plyse.chess.control.player.Player;
 import net.plyse.chess.exception.InvalidTurnException;
 
 import java.util.*;
@@ -16,6 +18,8 @@ import static net.plyse.chess.utility.Utility.CHESS_GRID_LENGTH;
 public class ChessBoard {
 
     private final Map<Position, Tile> chessBoard;
+    // should be final
+    private Game game;
 
     public ChessBoard() {
         this.chessBoard = createEmptyChessBoard();
@@ -86,12 +90,27 @@ public class ChessBoard {
         return map;
     }
 
+
+    //todo create a interface for those methoes - maybe
+    public boolean isPositionOccupied(Position position) {
+        return this.chessBoard.get(position).isOccupied();
+    }
+
+    public boolean isPositionOccupiedByOpponent(Position position, Player player) {
+        if (isPositionOccupied(position)) {
+            OccupiedTile occupiedTile = (OccupiedTile) this.chessBoard.get(position);
+            return occupiedTile.isOpponent(player);
+        }
+        return false;
+    }
+
     public void move(ChessPiece chessPiece, Turn turn) {
         if (turn.isValidMove(chessPiece)) {
             Position chessPiecePosition = chessPiece.getPosition();
             Position chessPieceBufferPosition = new Position(chessPiecePosition);
             chessPiecePosition.changePosition(turn, chessPiece);
             changePosition(chessPiece, turn, chessPieceBufferPosition);
+            return;
         }
         throw new InvalidTurnException();
     }

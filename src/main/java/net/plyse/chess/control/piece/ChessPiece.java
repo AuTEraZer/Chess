@@ -4,6 +4,7 @@ import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.movement.Movement;
 import net.plyse.chess.control.board.Position;
 import net.plyse.chess.control.movement.Turn;
+import net.plyse.chess.control.player.Player;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,16 +17,24 @@ public abstract class ChessPiece implements Movement {
 
     protected Position position;
     protected Set<Movement> movementSet;
+    protected Player player;
 
-    public ChessPiece(Position position, ChessBoard chessBoard) {
+    public ChessPiece(Position position, ChessBoard chessBoard, Player player) {
         this.position = position;
         this.movementSet = new HashSet<>();
+        this.player = player;
         addMovementSet(chessBoard);
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public Position getPosition() {
         return this.position;
     }
+
+    public abstract char getPieceNotation();
 
     protected abstract void addMovementSet(ChessBoard chessBoard);
 

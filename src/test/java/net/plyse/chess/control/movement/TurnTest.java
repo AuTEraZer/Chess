@@ -38,7 +38,7 @@ public class TurnTest {
         positions.add(startPosition);
         positionsFree.add(destinationPosition);
         ChessBoard chessBoard = new ChessBoard(positions, positionsFree);
-        King king = new King(startPosition, chessBoard);
+        King king = new King(startPosition, chessBoard, null);
         Turn turn = new Turn(destinationPosition, chessBoard);
         turn.makeTurn(king);
         assertTrue(startPosition.getXCoordinate() == 4);

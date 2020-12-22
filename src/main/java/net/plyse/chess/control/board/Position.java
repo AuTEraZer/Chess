@@ -29,6 +29,7 @@ public class Position {
         if (turn.isValidMove(chessPiece)) {
             this.xCoordinate = turn.getDestinationPosition().xCoordinate;
             this.yCoordinate = turn.getDestinationPosition().yCoordinate;
+            return;
         }
         throw new InvalidTurnException();
     }
@@ -37,6 +38,7 @@ public class Position {
         if (turn.isValidMove(chessPiece)) {
             this.xCoordinate = position.xCoordinate;
             this.yCoordinate = position.yCoordinate;
+            return;
         }
         throw new InvalidTurnException();
     }

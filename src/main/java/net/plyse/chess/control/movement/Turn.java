@@ -3,9 +3,11 @@ package net.plyse.chess.control.movement;
 import net.plyse.chess.control.board.ChessBoard;
 import net.plyse.chess.control.board.Position;
 import net.plyse.chess.control.piece.ChessPiece;
-import net.plyse.chess.exception.InvalidTurnException;
 
 import java.util.Objects;
+
+import static net.plyse.chess.utility.Utility.CAPTURE_TURN;
+import static net.plyse.chess.utility.Utility.MOVE_TURN;
 
 /**
  * @author Raphael Dichler on 17.12.20
@@ -15,17 +17,20 @@ public class Turn {
 
     private final Position destinationPosition;
     private final ChessBoard chessBoard;
+    private final boolean isAttack;
 
     public Turn(Position destinationPosition, ChessBoard chessBoard) {
         this.destinationPosition = destinationPosition;
         this.chessBoard = chessBoard;
+        this.isAttack = isAnAttack();
+    }
+
+    public char getTurnNotation() {
+        return (this.isAttack) ? CAPTURE_TURN : MOVE_TURN;
     }
 
     public void makeTurn(ChessPiece chessPiece) {
-        if (isValidMove(chessPiece)) {
-            chessBoard.move(chessPiece, this);
-        }
-        throw new InvalidTurnException();
+        chessBoard.move(chessPiece, this);
     }
 
     public Position getDestinationPosition() {
@@ -35,6 +40,11 @@ public class Turn {
     public boolean isValidMove(Movement chessPiece) {
         return chessPiece.isValidTurn(this);
     }
+
+    private boolean isAnAttack() {
+        return this.chessBoard.isPositionOccupied(this.destinationPosition);
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -46,9 +56,9 @@ public class Turn {
                         turn.destinationPosition.getYCoordinate() == this.destinationPosition.getYCoordinate()));
     }
 
-    // todo check if thats ok
     @Override
     public int hashCode() {
         return Objects.hash(destinationPosition, chessBoard);
     }
+
 }
